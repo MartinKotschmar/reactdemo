@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { TodoListElementType } from "../../types/TodoListElements";
 import Checkbox from "../Checkbox/Checkbox";
 import * as styles from "./TodoElement.module.css";
@@ -14,7 +14,7 @@ const TodoElement: React.FC<TodoElementProps> = ({ todoElement }) => {
       <div>
         <Link to={`/todos/${todoElement.id}`} className={styles.item}>
           <p>{todoElement.title}</p>
-          <Checkbox isChecked={todoElement.completed} />
+          <Checkbox id={todoElement.id} isChecked={todoElement.completed} />
         </Link>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 const NavBar: FC = () => {
   const [url, setUrl] = useState<string>();
 
+  //url set every time location changes to get active state
   const location = useLocation(); // once ready it returns the 'window.location' object
   useEffect(() => {
     setUrl(location.pathname);

@@ -4,4 +4,3 @@ export interface TodoListElementType {
   title: string;
   completed: boolean;
 }
-export type TodoListType = TodoListElementType[];

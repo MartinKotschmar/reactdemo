@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import * as styles from "./TodoDetails.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { fetchList } from "../../api/fetchList";
@@ -18,6 +18,8 @@ const TodoDetails: FC = () => {
     return pathSegments[pathSegments.length - 1];
   }, [location.pathname]);
 
+  //url to get exact details data for single todo
+  //checked state is static here, changes on list page doesnt impact api response
   useEffect(() => {
     setIsLoading(true);
     const fetchDetails = fetchList(
@@ -27,7 +29,6 @@ const TodoDetails: FC = () => {
       .then((data) => {
         setIsLoading(false);
         setDetailsData(data);
-        console.log(data);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -38,7 +39,7 @@ const TodoDetails: FC = () => {
   useEffect(() => {
     detailsData &&
       setDetailsHeadline(
-        `Todo Nr. ${detailsData.id}, User: ${detailsData.userId}`,
+        `ToDo Nr. ${detailsData.id}, User: ${detailsData.userId}`,
       );
   }, [detailsData]);
 
@@ -64,14 +65,13 @@ const TodoDetails: FC = () => {
                 <span>{detailsData?.title}</span>
               </div>
               <div className={styles.detailsRow}>
-                <span>abgeschlossen:</span>
+                <span>abgeschlossen (mglw. alter Status):</span>
                 <span>{detailsData?.completed ? "Ja" : "Nein"}</span>
               </div>
             </div>
           </>
         ) : isLoading ? (
-            <div className={styles.loading}>
-
+          <div className={styles.loading}>
             <MutatingDots
               visible={true}
               height="100"
@@ -83,7 +83,7 @@ const TodoDetails: FC = () => {
               wrapperStyle={{}}
               wrapperClass=""
             />
-            </div>
+          </div>
         ) : (
           <div>Error</div>
         )}
