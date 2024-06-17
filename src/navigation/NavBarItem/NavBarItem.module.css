@@ -1,0 +1,34 @@
+.container {
+    border-radius: 5px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.active {
+    background-color: var(--color-secondary);
+    border-radius: 30px;
+}
+
+.text {
+    font-size: var(--font-size);
+    font-weight: 500;
+
+}
+
+.link {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    text-decoration: none;
+}
